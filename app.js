@@ -4,8 +4,8 @@ const Discord= require('discord.js')
 const { get } = require('request')
 const client = new Discord.Client()
 var request = require ('request'),modhash
-
-client.login('NzgxNTkwNjM5ODgzNDUyNDY3.X7_3AQ.mUmumOoqjMm9J55cR48Z2ePCN7A')
+require('dotenv').config();
+client.login(process.env.API_KEY)
 
 function getposts (subrredit){
     var options = {
