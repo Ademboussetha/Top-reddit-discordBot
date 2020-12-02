@@ -1,0 +1,29 @@
+{
+  "name": "top-reddit-discordbot",
+  "version": "1.0.0",
+  "description": "discord bot that display for u the top posts in a sub reddit u're interested in ",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ademboussetha/Top-reddit-discordBot.git"
+  },
+  "keywords": [
+    "discord",
+    "reddit"
+  ],
+  "author": "Adem Boussetha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ademboussetha/Top-reddit-discordBot/issues"
+  },
+  "homepage": "https://github.com/Ademboussetha/Top-reddit-discordBot#readme",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "request": "^2.88.2"
+  }
+}
