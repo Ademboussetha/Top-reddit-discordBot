@@ -1,10 +1,10 @@
-const express = require ('express')
+const express = require('express')
 const app = express()
-const Discord= require('discord.js')
+const Discord = require('discord.js')
 const { get } = require('request')
 const fetch = require("node-fetch")
 const client = new Discord.Client()
-var request = require ('request'),modhash
+var request = require('request'), modhash
 require('dotenv').config();
 client.login(process.env.API_KEY)
 
@@ -23,36 +23,46 @@ client.login(process.env.API_KEY)
 //     })
 // }
 
-async function getData(subreddit,section){
+async function getData(subreddit, section, limit) {
     // Making request to reddit API and returning the data as JSON 
-    const api_url = `https://www.reddit.com/r/${subreddit}/${section}.json`
-    const fetch_res= await fetch(api_url)
-    const API_DATA = await fetch_res.json();
-    return API_DATA
+    const api_url = `https://www.reddit.com/r/${subreddit}/${section}.json?limit=${limit}`
+    try {
+        const fetch_res = await fetch(api_url)
+        const API_DATA = await fetch_res.json();
+        return API_DATA
+    }catch(err){
+        console.log("request to reddit didnt work")
+    }
+        
+    
 }
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag} !`);
-    });
+});
 
-client.on('message',async (message)=>{
+client.on('message', async (message) => {
     /**
      * chech prefix "!reddit" so we know a user is calling the bot
      * after that we gonna split the input into commands and args 
      * so we can make a request based on that informations (commands and args)
      * 
      */
-        const prefix = "!reddit"
-        if (!message.content.startsWith(prefix) || message.author.bot) return;
-        const args = message.content.slice(prefix.length).trim().split(' ');
-        const command = args.shift().toLowerCase();
-        const API_DATA = await getData(command,args);
-        // message.channel.send(API_DATA.data.children[0].data.selftext)
-        // console.log(command)
-        console.log(args)
-        // var data =  getposts(command)
-        // console.log(data.children[0])
-    
+    const prefix = "!reddit"
+    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    const args = message.content.slice(prefix.length).trim().split(' ');
+    const command = args.shift().toLowerCase();
+    // handling no command error
+    if (!command) return message.channel.send("You have to select a Subreddit")
+    const API_DATA = await getData(command, args[0], args[1]);
+    // message.channel.send(API_DATA.data.children[0].data.selftext)
+    console.log(API_DATA.data)
+
+    // console.log(command)
+    // console.log(args[0])
+    // var data =  getposts(command)
+    // console.log(data.children[0])
+
 });
 // client.on('message', msg => {
 //     if (msg.content === 'getdata' )  {
