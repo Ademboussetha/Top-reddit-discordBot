@@ -23,18 +23,24 @@ client.login(process.env.API_KEY)
 //     })
 // }
 
+
+// Making request to reddit API and returning the data as JSON 
 async function getData(subreddit, section, limit) {
-    // Making request to reddit API and returning the data as JSON 
-    const api_url = `https://www.reddit.com/r/${subreddit}/${section}.json?limit=${limit}`
+    //Checking if section is selected or not
+    var api_url = `https://www.reddit.com/r/${subreddit}/${section}.json?limit=${limit}`
+    api_url = (typeof section !== 'undefined') ? api_url : `https://www.reddit.com/r/${subreddit}.json?limit=${limit}`
+    //Showing on Log the URL we are getting data from
+    console.log(`GET REQUEST TO ${api_url}`)
+    //try catch so we handle the error from the async function.
     try {
         const fetch_res = await fetch(api_url)
         const API_DATA = await fetch_res.json();
         return API_DATA
-    }catch(err){
+    } catch (err) {
         console.log("request to reddit didnt work")
     }
-        
-    
+
+
 }
 
 client.on('ready', () => {
@@ -54,9 +60,30 @@ client.on('message', async (message) => {
     const command = args.shift().toLowerCase();
     // handling no command error
     if (!command) return message.channel.send("You have to select a Subreddit")
-    const API_DATA = await getData(command, args[0], args[1]);
+    // In case the user doesnt choose the section we'll number of posts that he wants to see.
+    // console.log(typeof args[0])
+    // console.log(args[0])
+    console.log(Number(args[0]))
+    console.log(Number(args[1]))
+    console.log(args)
+
+    var API_DATA = (Number(args[0]) !== "NaN") ? await getData(command, undefined, args[0]) : ((Number(args[1]) == "NaN") ? await getData(command, undefined, 5) : await getData(command, args[0], args[1]));
+    // console.log(API_DATA)
+    // if (!isNaN(args[0])) {
+    //     const API_DATA = await getData(command, undefined,args[0])
+    //     console.log(API_DATA)
+    //     console.log("adams")
+    // }
+    // else if (isNaN(args[1])){
+    //     const API_DATA = await getData(command, undefined,5)
+    //     console.log(API_DATA)
+    // }
+    // else {
+    //     const API_DATA = await getData(command, args[0], args[1])
+    //     console.log(API_DATA.data)
+    // }
+
     // message.channel.send(API_DATA.data.children[0].data.selftext)
-    console.log(API_DATA.data)
 
     // console.log(command)
     // console.log(args[0])
