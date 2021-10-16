@@ -25,6 +25,8 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
+    "node-url-shortener": "^2.0.0",
+    "prettylink": "^1.0.0",
     "request": "^2.88.2"
   }
 }
