@@ -1,13 +1,12 @@
-const express = require('express')
-const app = express()
 const Discord = require('discord.js')
-const { get } = require('request')
 const fetch = require("node-fetch")
 const client = new Discord.Client()
-var request = require('request'), modhash
-var shortUrl = require('node-url-shortener');
 
 require('dotenv').config();
+/**
+ * Client login
+ * Here it connects to the bot of discord.
+ */
 client.login(process.env.API_KEY)
 const SECTIONS = [
     "hot",
@@ -16,12 +15,6 @@ const SECTIONS = [
     "controversial"
 ]
 
-
-async function reply(){
-    const message =  new Discord.MessageEmbed().setColor("RANDOM").setDescription(`according to my calculations, you are funny😂`)
-    return message.channel.send(message);
-
-}
 // Making request to reddit API and returning the data as JSON 
 async function getData(subreddit, section, limit) {
     //Checking if section is selected or not
@@ -51,13 +44,6 @@ function validateCommand(command,args){
         }
     }
 }
-var link;
-async function shorterUrl(link){
-    shortUrl.short(link, function (err, url) {
-        console.log(url)
-        link = url
-    });
-}
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag} !`);
@@ -85,17 +71,20 @@ client.on('message', async (message) => {
     var API_DATA= (SECTIONS.includes(args[0])) && (!isNaN(args[1])) ? await getData(command, args[0], args[1]):
                     (!isNaN(args[0])) ? await getData(command, undefined, args[0]) :
                     await getData(command, undefined, 5)
-    console.log(API_DATA.data.children)      
-    console.log(shorterUrl("https://www.reddit.com/r/MachineLearning/comments/q86kqn/d_what_are_some_ideas_that_are_hyped_up_in/"))
     // handling NO SUBREDDIT error
     if (API_DATA.data.children.length===0) return message.channel.send(`Sorry, there aren’t any communities on Reddit with the name **${command}**.This community may have been banned or the community name is incorrect.`)
-    // send embedded message 
-    const reply =   await new Discord.MessageEmbed().setColor("BLUE").addField("Title : ", API_DATA.data.children[0].data.title,true).addField("Url : ",link,true)
-    // setDescription(API_DATA.data.children[0].data.url)
-    return message.channel.send(reply);
-    
+    /**
+     * Send multiple ebedded messages.
+     * Each one of them contains href title directly to the reddit post of the subreddit selected by the user the in the command.
+     * The maximum messages that bot can sends or posts that we can show you are limited to 5 so we won't spam your server
+     */
+    for (var i =0; i<= API_DATA.data.children.length;i++){
+        console.log(API_DATA.data.children.length)
+        console.log(API_DATA.data.children[i].data.title)
+        const reply =   new Discord.MessageEmbed().setColor("BLUE").addField("Title: ", `[${API_DATA.data.children[i].data.title}](${API_DATA.data.children[i].data.url})`)
+        message.channel.send(reply);
+    }
+   
 
-    // message.channel.send(API_DATA.data.children[0].data.selftext)
-    // console.log(data.children[0])
 
 });
