@@ -14,4 +14,4 @@ Feel free to add a star ⭐ to the repository to promote the project!
 
 If you don't want to edit the code of the bot, a permanent online version is available, which you can invite to your own Discord!   
 
-[![Discord Bots](https://discordbots.org/api/widget/557445719892688897.svg)](https://top.gg/bot/781590639883452467)
+[![Discord Bots](https://styles.redditmedia.com/t5_3b1wr/styles/communityIcon_qdbg6bz0bud71.png?width=256&s=ccf3d06bf3b8056f312f207c7ce906cf69af6efd)](https://top.gg/bot/781590639883452467)
