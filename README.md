@@ -16,5 +16,11 @@ If you don't want to edit the code of the bot, a permanent online version is ava
 
 [![Discord Bots](https://cdn.iconscout.com/icon/free/png-256/discord-4054295-3352977.png)](https://top.gg/bot/781590639883452467)
 
-### customized version
+### Customized version
 On progress...
+
+## Contributing
+Feel free to contribute, you can also contact me via : ademboussetha@gmail.com for more creative ideas.
+Thank you. 
+
+Ciao ciao.
