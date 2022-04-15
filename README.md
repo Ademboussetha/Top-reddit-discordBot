@@ -15,3 +15,6 @@ Feel free to add a star ⭐ to the repository to promote the project!
 If you don't want to edit the code of the bot, a permanent online version is available, which you can invite to your own Discord!   
 
 [![Discord Bots](https://cdn.iconscout.com/icon/free/png-256/discord-4054295-3352977.png)](https://top.gg/bot/781590639883452467)
+
+### customized version
+On progress...
