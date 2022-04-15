@@ -14,4 +14,4 @@ Feel free to add a star ⭐ to the repository to promote the project!
 
 If you don't want to edit the code of the bot, a permanent online version is available, which you can invite to your own Discord!   
 
-[![Discord Bots](https://pngset.com/images/cool-discord-bot-icons-hand-fist-graphics-art-transparent-png-1477762.png)](https://top.gg/bot/781590639883452467)
+[![Discord Bots](https://e7.pngegg.com/pngimages/529/418/png-clipart-computer-icons-internet-bot-eyes-miscellaneous-people.png)](https://top.gg/bot/781590639883452467)
