@@ -7,3 +7,11 @@ Feel free to add a star ⭐ to the repository to promote the project!
 * choose tha category you want : Top/Hot/New/Controversial  
 * Control how many posts you want to see
 * By running the command you will get the titles of the posts you can choose the one you're interested in by clicking on the title of the post you will automatically get redirected to the browser and you will be in the post.
+
+## Installation
+
+### Non-customized version
+
+If you don't want to edit the code of the bot, a permanent online version is available, which you can invite to your own Discord!   
+
+[![Discord Bots](https://discordbots.org/api/widget/557445719892688897.svg)](https://top.gg/bot/781590639883452467)
