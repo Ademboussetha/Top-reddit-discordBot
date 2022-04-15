@@ -67,6 +67,7 @@ client.on('message', async (message) => {
      */
     if (!command) return message.channel.send("You have to select a Subreddit")
     var commandValidation = validateCommand(command,args)
+    console.log(command,args)
     if (!commandValidation) return message.channel.send("Verify your command please :D")
     var API_DATA= (SECTIONS.includes(args[0])) && (!isNaN(args[1])) ? await getData(command, args[0], args[1]):
                     (!isNaN(args[0])) ? await getData(command, undefined, args[0]) :
@@ -79,12 +80,9 @@ client.on('message', async (message) => {
      * The maximum messages that bot can sends or posts that we can show you are limited to 5 so we won't spam your server
      */
     for (var i =0; i<= API_DATA.data.children.length;i++){
-        console.log(API_DATA.data.children.length)
+        // console.log(API_DATA.data.children.length)
         console.log(API_DATA.data.children[i].data.title)
         const reply =   new Discord.MessageEmbed().setColor("BLUE").addField("Title: ", `[${API_DATA.data.children[i].data.title}](${API_DATA.data.children[i].data.url})`)
         message.channel.send(reply);
     }
-   
-
-
 });
